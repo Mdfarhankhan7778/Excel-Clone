@@ -19,7 +19,11 @@ for (let i = 0; i < rows; i++) {
             fontFamily: "monospace",
             fontSize: "14",
             fontColor: "#000000",
-            BGcolor: "#000000",  // Just for indication purpose,
+            BGcolor: "#000000",// Just for indication purpose,
+            value: "",
+            formula: "",
+            children: [],
+            
            
         }
         sheetRow.push(cellProp);
