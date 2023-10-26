@@ -1,6 +1,5 @@
-// storage
-
-
+// Storage
+let collectedSheetDB = []; // Contains all sheet DB
 let sheetDB = [];
 
 {
@@ -8,28 +7,26 @@ let sheetDB = [];
     addSheetBtn.click();
 }
 
-for (let i = 0; i < rows; i++) {
-    let sheetRow = [];
-    for (let j = 0; j < cols; j++) {
-        let cellProp = {
-            bold: false,
-            italic: false,
-            underline: false,
-            alignment: "left",
-            fontFamily: "monospace",
-            fontSize: "14",
-            fontColor: "#000000",
-            BGcolor: "#000000",// Just for indication purpose,
-            value: "",
-            formula: "",
-            children: [],
-            
-           
-        }
-        sheetRow.push(cellProp);
-    }
-    sheetDB.push(sheetRow);
-}
+// for (let i = 0; i < rows; i++) {
+//     let sheetRow = [];
+//     for (let j = 0; j < cols; j++) {
+//         let cellProp = {
+//             bold: false,
+//             italic: false,
+//             underline: false,
+//             alignment: "left",
+//             fontFamily: "monospace",
+//             fontSize: "14",
+//             fontColor: "#000000",
+//             BGcolor: "#000000",  // Just for indication purpose,
+//             value: "",
+//             formula: "",
+//             children: [],
+//         }
+//         sheetRow.push(cellProp);
+//     }
+//     sheetDB.push(sheetRow);
+// }
 
 
 // Selectors for cell properties
@@ -39,7 +36,7 @@ let underline = document.querySelector(".underline");
 let fontSize = document.querySelector(".font-size-prop");
 let fontFamily = document.querySelector(".font-family-prop");
 let fontColor = document.querySelector(".font-color-prop");
-let BGcolor = document.querySelector(".BGcolor-prop");
+let BGColor = document.querySelector(".BGcolor-prop");
 let alignment = document.querySelectorAll(".alignment");
 let leftAlign = alignment[0];
 let centerAlign = alignment[1];
@@ -101,13 +98,13 @@ fontColor.addEventListener("change", (e) => {
     cell.style.color = cellProp.fontColor;
     fontColor.value = cellProp.fontColor;
 })
-BGcolor.addEventListener("change", (e) => {
+BGColor.addEventListener("change", (e) => {
     let address = addressBar.value;
     let [cell, cellProp] = getCellAndCellProp(address);
 
-    cellProp.BGcolor = BGcolor.value; // Data change
-    cell.style.backgroundColor = cellProp.BGcolor;
-    BGcolor.value = cellProp.BGcolor;
+    cellProp.BGColor = BGColor.value; // Data change
+    cell.style.backgroundColor = cellProp.BGColor;
+    BGColor.value = cellProp.BGColor;
 })
 alignment.forEach((alignElem) => {
     alignElem.addEventListener("click", (e) => {
@@ -160,16 +157,18 @@ function addListenerToAttachCellProperties(cell) {
         cell.style.fontSize = cellProp.fontSize + "px";
         cell.style.fontFamily = cellProp.fontFamily;
         cell.style.color = cellProp.fontColor;
-        cell.style.backgroundColor = cellProp.BGcolor === "#000000" ? "transparent" : cellProp.BGcolor;
+        cell.style.backgroundColor = cellProp.BGColor === "#000000" ? "transparent" : cellProp.BGColor;
         cell.style.textAlign = cellProp.alignment;
-                
+
+        // console.log(cellProp.fontFamily, cellProp.fontSize);
+        
 
         // Apply properties UI Props container
         bold.style.backgroundColor = cellProp.bold ? activeColorProp : inactiveColorProp;
         italic.style.backgroundColor = cellProp.italic ? activeColorProp : inactiveColorProp;
         underline.style.backgroundColor = cellProp.underline ? activeColorProp : inactiveColorProp;
         fontColor.value = cellProp.fontColor;
-        BGcolor.value = cellProp.BGcolor;
+        BGColor.value = cellProp.BGColor;
         fontSize.value = cellProp.fontSize;
         fontFamily.value = cellProp.fontFamily;
         switch(cellProp.alignment) { // UI change (2)
